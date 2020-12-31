@@ -11,20 +11,37 @@
     #define F first
     #define MOD 1000000007
      
-    int main() 
-    { 
-    	PKMKB;
-      
-        int n;
+      int main()
+      {
+        PKMKB;
+        lli n;
         cin>>n;
      
-        vector<pair<int ,int> > coordinate;
-        for(int i=0; i<n; i++){
-        	int x,y;
-        	cin>>x >>y;
-        	coordinate.pb({x,y});
+        unordered_map<lli,lli> vasya;
+        unordered_map<lli,lli> petya;
+        int loop = n;
+        int index=1;
+     
+        while(loop--){
+            lli temp;
+            cin>>temp;
+            vasya[temp] = index;
+            petya[temp] = n - index +1;
+            index++;
         }
-
+     
+        lli queries;
+        cin>>queries;
+     
+        lli ans_vasya=0;
+        lli ans_petya=0;
         
-        return 0; 
-    } 
+        while(queries --){
+            lli q;
+            cin>>q;
+            ans_vasya += vasya[q];
+            ans_petya += petya[q];  
+        }
+        cout<<ans_vasya<<" "<<ans_petya<<endl;
+        return 0;
+    }
